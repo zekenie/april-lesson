@@ -5,7 +5,8 @@ var express = require("express"),
 app.set('view engine', 'ejs');
 
 var userGet = function(request,response) {
-	var user = database.query(request.route.params.id);
+	console.log(request.route.params.id);
+	var user = database.query("users",request.route.params.id);
 	console.log("found user",user,"now serving via ejs");
 	response.render("userView",{user:user});
 };
@@ -15,6 +16,7 @@ var userList = function(request,response) {
 	response.render("userList",{users:database.tables.users});
 };
 
+app.get("/user/",userList);
 app.get("/user/:id?",userGet);
 
 app.listen(8080,function(){

@@ -23,5 +23,5 @@ exports.tables = {
 };
 
 exports.query = function(table,id){
-	return _.findWhere(exports.tables[table],{id:id});
+	return _.findWhere(exports.tables[table],{id:parseInt(id)});
 }
